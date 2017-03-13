@@ -28,7 +28,7 @@ function init() {
   scene.add(light);
 
   // Add a white PointLight to the scene.
-  var loader = new THREE.JSONLoader();
+  var loader = new THREE.JSONLoader();45
   loader.load( 'test.json', function(geometry){
     var material = new THREE.MeshLambertMaterial({color: 0x55B663});
     mesh = new THREE.Mesh( geometry, material);
