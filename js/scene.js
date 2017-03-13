@@ -8,8 +8,8 @@ animate();
 function init() {
   // Create the scene and set the scene size.
   scene = new THREE.Scene();
-  var WIDTH = 400,
-      HEIGHT = 300;
+  var WIDTH = 600,
+      HEIGHT = 600;
 
   // Create a renderer and add it to the DOM.
   renderer = new THREE.WebGLRenderer({antialias:true});
@@ -29,7 +29,7 @@ function init() {
 
   // Add a white PointLight to the scene.
   var loader = new THREE.JSONLoader();
-  loader.load( 'http://codepen.io/nickpettit/pen/nqyaK.js', function(geometry){
+  loader.load( 'test.json', function(geometry){
     var material = new THREE.MeshLambertMaterial({color: 0x55B663});
     mesh = new THREE.Mesh( geometry, material);
     scene.add(mesh);
