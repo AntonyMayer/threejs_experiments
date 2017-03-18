@@ -4,9 +4,12 @@ var scene,
     renderer,
     datGUI = new dat.GUI(),
     guiControls = {
-        rotationX: .1,
-        rotationY: .1,
-        rotationZ: .1
+        positionX: 1,
+        positionY: 1,
+        positionZ: 1,
+        rotationX: .01,
+        rotationY: .01,
+        rotationZ: .01
     };
 
 init();
@@ -77,20 +80,24 @@ function loadCallback(geometry) {
     test = new THREE.Mesh(geometry, material);
     test.castShadow = true;
     scene.add(test);
-    animateRotate();
+    animateObject();
 }
 
-function animateRotate() {
-    test.rotation.x += guiControls.rotationX;
+function animateObject() {
+    test.position.x = guiControls.positionX;
+    test.position.y = guiControls.positionY;
+    test.position.z = guiControls.positionZ;
+
+    // test.rotation.x += guiControls.rotationX;
     test.rotation.y += guiControls.rotationY;
-    test.rotation.z += guiControls.rotationZ;
-    requestAnimationFrame(animateRotate);
+    // test.rotation.z += guiControls.rotationZ;
+    requestAnimationFrame(animateObject);
     renderer.render(scene, camera);
 }
 
 function createGUI(controls) {
     for (let prop in controls) {
-        datGUI.add(controls, prop, 0, 1);
+        datGUI.add(controls, prop, -controls[prop]*100, controls[prop]*100);
     }
 }
 
