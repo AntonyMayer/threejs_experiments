@@ -19,8 +19,10 @@ function init() {
     // Create a renderer and add it to the DOM.
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
+    renderer.shadowMapEnabled = true;
+    renderer.shadowMapSoft = true;
+    renderer.domElement.id = "experiment";
     document.body.appendChild(renderer.domElement);
-    renderer.domElement.id = "context"
 
     // Create a camera, zoom it out from the model a bit, and add it to the scene.
     camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1, 1000);
@@ -28,13 +30,18 @@ function init() {
     camera.lookAt(scene.position);
 
     // Create a light, set its position, and add it to the scene.
-    light = new THREE.PointLight(0xffffff);
-    light.position.set(-100, 200, 100);
+    // light = new THREE.PointLight(0xffffff);
+    // light.position.set(-100, 200, 100);
+    let spotLight = new THREE.SpotLight(0xFFFFFF);
+    spotLight.castShadow = true;
+    spotLight.position.set(8,3,1);
+
 
     let planeGeometry = new THREE.PlaneGeometry(10,10,10);
-    let planeMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+    let planeMaterial = new THREE.MeshLambertMaterial({color: 0xDDDDDD});
     let plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -.5*Math.PI;
+    plane.receiveShadow = true;
 
     // Add object
     loader = new THREE.JSONLoader();
@@ -42,6 +49,7 @@ function init() {
         // var material = new THREE.MeshBasicMaterial({ color: 0xFF0000, wireframe: true });
         var material = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
         test = new THREE.Mesh(geometry, material);
+        test.castShadow = true;
         scene.add(test);
     });
 
@@ -56,7 +64,7 @@ function init() {
     let gridColor = new THREE.Color("rgb(255,0,0)");
     grid.setColors(gridColor, 0x000000); 
 
-    addToScene(scene, [camera, light, axis, plane]);
+    addToScene(scene, [camera, light, axis, plane, spotLight]);
 }
 
 // Renders the scene and updates the render as needed.
