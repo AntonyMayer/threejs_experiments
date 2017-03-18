@@ -8,8 +8,8 @@ animate();
 function init() {
   // Create the scene and set the scene size.
   scene = new THREE.Scene();
-  var WIDTH = 600,
-      HEIGHT = 600;
+  var WIDTH = 1000,
+      HEIGHT = 800;
 
   // Create a renderer and add it to the DOM.
   renderer = new THREE.WebGLRenderer({antialias:true});
@@ -18,7 +18,7 @@ function init() {
   renderer.domElement.id = "context"
 
   // Create a camera, zoom it out from the model a bit, and add it to the scene.
-  camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
+  camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 40000);
   camera.position.set(0,6,0);
   scene.add(camera);
 
@@ -30,7 +30,7 @@ function init() {
   // Add a white PointLight to the scene.
   var loader = new THREE.JSONLoader();45
   loader.load( 'test.json', function(geometry){
-    var material = new THREE.MeshLambertMaterial({color: 0x55B663});
+    var material = new THREE.MeshLambertMaterial({color: 0xFF0000});
     mesh = new THREE.Mesh( geometry, material);
     scene.add(mesh);
   });
