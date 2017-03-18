@@ -1,10 +1,17 @@
 // Set up the scene, camera, and renderer as global variables.
 var scene,
     camera,
-    renderer;
+    renderer,
+    datGUI = new dat.GUI(),
+    guiControls = {
+        rotationX: .1,
+        rotationY: .1,
+        rotationZ: .1
+    };
 
 init();
 animate();
+createGUI(guiControls);
 
 // Sets up the scene.
 function init() {
@@ -50,18 +57,15 @@ function init() {
     // Add OrbitControls so that we can pan around with the mouse.
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    //add axis
-    axis = new THREE.AxisHelper(10);
-
     //add grid
     let grid = new THREE.GridHelper(50, 5);
     let gridColor = new THREE.Color("rgb(255,0,0)");
     grid.setColors(gridColor, 0x000000);
 
-    addToScene(scene, [camera, light, axis, plane, spotLight]);
+    addToScene([camera, light, axis, plane, spotLight]);
 }
 
-// Renders the scene and updates the render as needed.
+// Renders the scene and update orbit mouse controls
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
@@ -77,13 +81,21 @@ function loadCallback(geometry) {
 }
 
 function animateRotate() {
-    test.rotation.y += .01;
+    test.rotation.x += guiControls.rotationX;
+    test.rotation.y += guiControls.rotationY;
+    test.rotation.z += guiControls.rotationZ;
     requestAnimationFrame(animateRotate);
     renderer.render(scene, camera);
 }
 
-function addToScene(scene, objects) {
-    for (let i in objects) {
-        scene.add(objects[i]);
+function createGUI(controls) {
+    for (let prop in controls) {
+        datGUI.add(controls, prop, 0, 1);
+    }
+}
+
+function addToScene(objects) {
+    for (let item of objects) {
+        scene.add(item);
     }
 }
