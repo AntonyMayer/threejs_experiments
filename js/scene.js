@@ -34,10 +34,10 @@ function init() {
     // light.position.set(-100, 200, 100);
     let spotLight = new THREE.SpotLight(0xFFFFFF);
     spotLight.castShadow = true;
-    spotLight.position.set(8,3,1);
+    spotLight.position.set(15,30,50);
 
 
-    let planeGeometry = new THREE.PlaneGeometry(10,10,10);
+    let planeGeometry = new THREE.PlaneGeometry(30,30,30);
     let planeMaterial = new THREE.MeshLambertMaterial({color: 0xDDDDDD});
     let plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -.5*Math.PI;
