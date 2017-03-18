@@ -5,11 +5,11 @@ var scene,
     datGUI = new dat.GUI(),
     guiControls = {
         positionX: 1,
-        positionY: 1,
+        // positionY: 1,
         positionZ: 1,
-        rotationX: .01,
+        // rotationX: .01,
         rotationY: .01,
-        rotationZ: .01
+        // rotationZ: .01
     };
 
 init();
@@ -85,7 +85,7 @@ function loadCallback(geometry) {
 
 function animateObject() {
     test.position.x = guiControls.positionX;
-    test.position.y = guiControls.positionY;
+    // test.position.y = guiControls.positionY;
     test.position.z = guiControls.positionZ;
 
     // test.rotation.x += guiControls.rotationX;
@@ -97,7 +97,7 @@ function animateObject() {
 
 function createGUI(controls) {
     for (let prop in controls) {
-        datGUI.add(controls, prop, -controls[prop]*100, controls[prop]*100);
+        datGUI.add(controls, prop, -controls[prop]*12.5, controls[prop]*12.5);
     }
 }
 
