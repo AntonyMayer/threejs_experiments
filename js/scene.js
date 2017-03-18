@@ -8,8 +8,8 @@ animate();
 function init() {
   // Create the scene and set the scene size.
   scene = new THREE.Scene();
-  var WIDTH = 1000,
-      HEIGHT = 800;
+  var WIDTH = window.innerWidth,
+      HEIGHT = window.innerHeight;
 
   // Create a renderer and add it to the DOM.
   renderer = new THREE.WebGLRenderer({antialias:true});
