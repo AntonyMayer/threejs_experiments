@@ -1,6 +1,7 @@
 var scene,
     camera,
     renderer,
+    controls,
     datGUI = new dat.GUI(),
     guiControls = {
         positionX: 1,
@@ -17,10 +18,9 @@ createGUI(guiControls);
 
 function init() {
     var WIDTH = window.innerWidth,
-        HEIGHT = window.innerHeight,
-        light,
-        loader,
-        elm = {};
+        HEIGHT = window.innerHeight;
+        // light,
+        // loader;
 
     /**
      * SCENE
@@ -61,14 +61,18 @@ function init() {
     plane.rotation.x = -.5 * Math.PI;
     plane.receiveShadow = true;
 
-    // Add object
-    loader = new THREE.JSONLoader();
+    /**
+     * OBJECT from JSON
+     */
+    let loader = new THREE.JSONLoader();
     loader.load('test.json', loadCallback);
 
-    // Add OrbitControls so that we can pan around with the mouse.
+    /**
+     * ORBIT CONTROLS
+     */
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    addToScene([camera, light, plane, spotLight]);
+    addToScene([camera, plane, spotLight]);
 }
 
 
