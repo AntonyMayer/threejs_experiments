@@ -73,6 +73,7 @@ function init() {
     /**
      * D.
      */
+    // TODO: add "d." string object to scene, research on json based fonts
     //  let logoTextGeometry = new THREE.TextGeometry('d.', {size: 10, height: 5}),
     //      logoTextMaterial = new THREE.MeshLambertMaterial({ color: 0x000000 }),
     //      logoText = new THREE.Mesh(logoTextGeometry, logoTextMaterial);
