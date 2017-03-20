@@ -19,13 +19,11 @@ createGUI(guiControls);
 function init() {
     var WIDTH = window.innerWidth,
         HEIGHT = window.innerHeight;
-        // light,
-        // loader;
 
     /**
      * SCENE
      */
-     scene = new THREE.Scene();
+    scene = new THREE.Scene();
 
     /**
      * RENDERER
@@ -45,6 +43,11 @@ function init() {
     camera.lookAt(scene.position);
 
     /**
+     * ORBIT CONTROLS
+     */
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    /**
      * LIGHT
      */
     let spotLight = new THREE.SpotLight(0xFFFFFF);
@@ -57,7 +60,7 @@ function init() {
     let planeGeometry = new THREE.PlaneGeometry(30, 30, 30),
         planeMaterial = new THREE.MeshLambertMaterial({ color: 0xDDDDDD }),
         plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    
+
     plane.rotation.x = -.5 * Math.PI;
     plane.receiveShadow = true;
 
@@ -68,18 +71,22 @@ function init() {
     loader.load('test.json', loadCallback);
 
     /**
-     * ORBIT CONTROLS
+     * D.
      */
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    //  let logoTextGeometry = new THREE.TextGeometry('d.', {size: 10, height: 5}),
+    //      logoTextMaterial = new THREE.MeshLambertMaterial({ color: 0x000000 }),
+    //      logoText = new THREE.Mesh(logoTextGeometry, logoTextMaterial);
 
+    /**
+     * UPDATE SCENE
+     */
     addToScene([camera, plane, spotLight]);
 }
 
-
 class Figure {
-  constructor() {
+    constructor() {
 
-  }
+    }
 }
 
 // Renders the scene and update orbit mouse controls
@@ -111,7 +118,7 @@ function animateObject() {
 
 function createGUI(controls) {
     for (let prop in controls) {
-        datGUI.add(controls, prop, -controls[prop]*12.5, controls[prop]*12.5);
+        datGUI.add(controls, prop, -controls[prop] * 12.5, controls[prop] * 12.5);
     }
 }
 
