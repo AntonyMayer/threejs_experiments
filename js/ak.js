@@ -54,34 +54,19 @@ function init() {
     spotLight.castShadow = true;
     spotLight.position.set(15, 30, 50);
 
-    /**
-     * PLANE
-     */
-    let planeGeometry = new THREE.PlaneGeometry(30, 30, 30),
-        planeMaterial = new THREE.MeshLambertMaterial({ color: 0xDDDDDD }),
-        plane = new THREE.Mesh(planeGeometry, planeMaterial);
-
-    plane.rotation.x = -.5 * Math.PI;
-    plane.receiveShadow = true;
 
     /**
-     * OBJECT from JSON
+     * Cube
      */
-    let loader = new THREE.JSONLoader();
-    loader.load('test.json', loadCallback);
-
-    /**
-     * D.
-     */
-    // TODO: add "d." string object to scene, research on json based fonts
-    //  let logoTextGeometry = new THREE.TextGeometry('d.', {size: 10, height: 5}),
-    //      logoTextMaterial = new THREE.MeshLambertMaterial({ color: 0x000000 }),
-    //      logoText = new THREE.Mesh(logoTextGeometry, logoTextMaterial);
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    var cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
     /**
      * UPDATE SCENE
      */
-    addToScene([camera, plane, spotLight]);
+    addToScene([camera, spotLight]);
 }
 
 class Figure {
